@@ -1,12 +1,13 @@
 Summary:	OpenGL extension to GTK
 Name:		gtkglext
 Version:	1.2.0
-Release:	13
+Release:	14
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://downloads.sourceforge.net/gtkglext/%{name}-%{version}.tar.bz2
 # Source0-md5:	ed7ba24ce06a8630c07f2d0ee5f04ab4
 Patch0:		%{name}-gtk+.patch
+Patch1:		%{name}-pangox.patch
 URL:		http://gtkglext.sourceforge.net/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	autoconf
@@ -14,6 +15,7 @@ BuildRequires:	automake
 BuildRequires:	gtk+-devel
 BuildRequires:	gtk-doc
 BuildRequires:	libtool
+BuildRequires:	pangox-compat-devel
 BuildRequires:	pkg-config
 BuildRequires:	xorg-libXmu-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -44,6 +46,7 @@ gtkglext API documentation.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -53,7 +56,6 @@ gtkglext API documentation.
 %{__automake}
 %configure \
 	--disable-static	\
-	--enable-gtk-doc	\
 	--with-gdktarget=x11	\
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
@@ -67,8 +69,8 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post   -p /usr/sbin/ldconfig
+%postun -p /usr/sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)

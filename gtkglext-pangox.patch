@@ -1,0 +1,12 @@
+diff -aurN gtkglext-1.2.0.orig/configure.in gtkglext-1.2.0/configure.in
+--- gtkglext-1.2.0.orig/configure.in	2012-10-12 23:29:28.115955006 +0200
++++ gtkglext-1.2.0/configure.in	2012-10-12 23:29:50.760779866 +0200
+@@ -61,7 +61,7 @@
+ 
+ # Pangox
+ m4_define([pangox_pkg], [pangox])
+-m4_define([pangox_required_version], [1.0.0])
++m4_define([pangox_required_version], [0.0.1])
+ 
+ # PangoFT2
+ m4_define([pangoft2_pkg], [pangoft2])
